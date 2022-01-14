@@ -17,12 +17,12 @@ export function Posts() {
 
   const queryClient = useQueryClient();
 
-  // useEffect(() => {
-  //   if (currentPage < maxPostPage || currentPage > 1) {
-  //     const next = currentPage + 1;
-  //     queryClient.prefetchQuery(["posts", next], () => fetchPosts(next));
-  //   }
-  // }, [currentPage, queryClient]);
+  useEffect(() => {
+    if (currentPage < maxPostPage || currentPage > 1) {
+      const next = currentPage + 1;
+      queryClient.prefetchQuery(["posts", next], () => fetchPosts(next));
+    }
+  }, [currentPage, queryClient]);
 
   // replace with useQuery
   const { data, isError, error, isLoading, isFetching } = useQuery(
@@ -31,7 +31,6 @@ export function Posts() {
     { staleTime: 3000 }
   );
 
-  console.log(isLoading, isFetching);
   if (isLoading) return <h3>Loading...</h3>;
   if (isError)
     return (

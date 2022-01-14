@@ -31,6 +31,9 @@ export function PostDetail({ post }) {
   );
 
   const deleteMutation = useMutation((id) => deletePost(id));
+  const updateMutation = useMutation((id) => {
+    updatePost(id);
+  });
 
   switch (true) {
     case isLoading:
@@ -56,7 +59,16 @@ export function PostDetail({ post }) {
           {deleteMutation.isError && <p>Error</p>}
           {deleteMutation.isLoading && <p>Deleting</p>}
           {deleteMutation.isSuccess && <p>Success</p>}
-          <button>Update title</button>
+          <button
+            onClick={() => {
+              updateMutation.mutate(post.id);
+            }}
+          >
+            Update title
+          </button>
+          {updateMutation.isError && <p>Error</p>}
+          {updateMutation.isLoading && <p>Updating</p>}
+          {updateMutation.isSuccess && <p>Success</p>}
           <p>{post.body}</p>
           <h4>Comments</h4>
           {data.map((comment) => (
