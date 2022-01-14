@@ -28,7 +28,7 @@ export function Posts() {
   const { data, isError, error, isLoading, isFetching } = useQuery(
     ["posts", currentPage],
     () => fetchPosts(currentPage),
-    { staleTime: 3000 }
+    { staleTime: 3000, keepPreviousData: true }
   );
 
   if (isLoading) return <h3>Loading...</h3>;
