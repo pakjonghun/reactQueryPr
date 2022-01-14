@@ -30,7 +30,7 @@ useEffect(() => {
 
 ### cache time
 
-before expire in cache
+before expire in cache (after inactive)
 
 ### isLoading
 
